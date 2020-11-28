@@ -1,16 +1,14 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const port = process.env.PORT
+const port = process.env.PORT || 3001
+const postRoutes = require('./routes/postRoutes')
+
 require('./db/dbConnection')
 
-app.get('/', (req, res) => {
-    res.send('Working')
-})
+app.use(express.json())
 
-app.post('/post', (req, res) => {
-    
-})
+app.use(postRoutes)
 
 
 app.listen(port, () => console.log(`Listening on port: ${port}`))
