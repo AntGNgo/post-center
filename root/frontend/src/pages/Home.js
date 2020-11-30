@@ -9,7 +9,7 @@ function Home() {
     useEffect(() => {
         axios.get('http://localhost:4000/posts')
             .then((response) => {
-                setPosts(response.data)
+                setPosts(response.data.reverse())
             })
     }, [])
 
@@ -28,6 +28,7 @@ function Home() {
 
   return (
     <div className="container mx-auto px-2 bg-white h-screen">
+      <h1 className='text-2xl font-'>Recent Posts</h1>
       {posts.map((post) => <Post key={post._id} postInfo={post} onClickDelete={onClickDelete} />)}
     </div>
   );

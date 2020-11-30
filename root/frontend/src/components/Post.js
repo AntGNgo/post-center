@@ -54,11 +54,11 @@ const Post = ({ postInfo, onClickDelete }) => {
                     body: editValues.body
                 })
                 setIsOpen(true)
+                setIsEditing(false)
             })
             .catch((error) => {
                 return console.log(error)
             })
-        
     }
 
     return(
@@ -69,9 +69,9 @@ const Post = ({ postInfo, onClickDelete }) => {
                     <h2 className='text-sm'>{postInfo.postDate.slice(0,10)}</h2>
                     <p className='mt-4 px-6 pb-4 leading-6'>{content.body}</p>
                 </div>
-                <div className='flex flex-col items-center'>
-                    <button onClick={onClickEdit}>Edit</button>
-                    <a onClick={() => onClickDelete(postInfo._id)}>X</a>
+                <div className='flex flex-col items-center justify-evenly '>
+                    <a onClick={() => onClickDelete(postInfo._id)} className="cursor-pointer mb-5 border-b border-white hover:border-black">X</a>
+                    <button onClick={onClickEdit} className='border-b border-white hover:border-black'>Edit</button>
                 </div>
             </div>
             {isEditing ? <ShowEdit postInfo={postInfo} onChangeEdits={onChangeEdits} onClickSendEdit={onClickSendEdit} /> : null}

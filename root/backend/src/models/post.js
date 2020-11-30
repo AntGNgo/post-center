@@ -1,8 +1,17 @@
 const mongoose = require('mongoose')
+const Filter = require('bad-words')
+
+filter = new Filter()
 
 const postSchema = new mongoose.Schema({
     title: {
         type: String,
+        validate: {
+            validator: (value) => {
+               return !filter.isProfane(value)
+            },
+            message: "Try to not curse here!"
+        },
         required: true
     },
     postDate: {
@@ -11,6 +20,12 @@ const postSchema = new mongoose.Schema({
     },
     body: {
         type: String,
+        validate: {
+            validator: (value) => {
+               return !filter.isProfane(value)
+            },
+            message: "Try to not curse here!"
+        },
         required: true
     }
 })

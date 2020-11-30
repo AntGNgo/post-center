@@ -15,17 +15,22 @@ router.get('/posts', async (req, res) => {
 })
 
 router.post('/post', async (req, res) => {
-    const post = await Post.create({
-        title: req.body.title,
-        body: req.body.body
-    })
-
-    if(!post) {
-        res.status(400).send("Something went wrong with your post!")
+    try {
+        const post = await Post.create({
+            title: req.body.title,
+            body: req.body.body
+        })
+    
+        if(!post) {
+            res.status(400).send("Something went wrong with your post!")
+        }
+    
+        post.save()
+        res.send(post)
+    } catch (error) {
+        console.log(error)
+        res.status(403).send(error.errors.title.message)
     }
-
-    post.save()
-    res.send(post)
 })
 
 router.patch('/post/update/:id', async (req, res) => {
