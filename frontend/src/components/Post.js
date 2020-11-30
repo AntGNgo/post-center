@@ -47,7 +47,7 @@ const Post = ({ postInfo, onClickDelete }) => {
     
     const onClickSendEdit = (e) => {
         e.preventDefault()
-        axios.patch(`http://localhost:4000/post/update/${postInfo._id}`, editValues)
+        axios.patch(`https://post-center-backend.herokuapp.com/post/update/${postInfo._id}`, editValues)
             .then((response) => {
                 updateContent({
                     title: editValues.title,

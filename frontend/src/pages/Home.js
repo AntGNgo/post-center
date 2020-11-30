@@ -7,14 +7,14 @@ function Home() {
     
 
     useEffect(() => {
-        axios.get('http://localhost:4000/posts')
+        axios.get('https://post-center-backend.herokuapp.com/posts')
             .then((response) => {
                 setPosts(response.data.reverse())
             })
     }, [])
 
     const onClickDelete = (id) => {
-      axios.delete(`http://localhost:4000/post/${id}`)
+      axios.delete(`https://post-center-backend.herokuapp.com/post/${id}`)
           .then((response) => {
               console.log(response)
           })

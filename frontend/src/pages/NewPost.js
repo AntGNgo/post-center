@@ -15,7 +15,7 @@ const NewPost = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:4000/post', postValues)
+        axios.post('https://post-center-backend.herokuapp.com/post', postValues)
             .then((response) => {
                 setIsShowingSuccess(true)
                 setTimeout(() => {
