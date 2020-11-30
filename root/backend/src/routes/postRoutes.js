@@ -4,14 +4,15 @@ const Post = require('../models/post')
 
 
 router.get('/posts', async (req, res) => {
-    console.log('here')
-    const posts = await Post.find({})
-
-    if(!posts) {
-        res.status(404).send('No posts found!')
+    try {
+        const posts = await Post.find({})
+        if(!posts) {
+            res.status(404).send('No posts found!')
+        }
+        res.send(posts)
+    } catch (error) {
+        res.status(500).send()
     }
-
-    res.send(posts)
 })
 
 router.post('/post', async (req, res) => {
@@ -28,8 +29,7 @@ router.post('/post', async (req, res) => {
         post.save()
         res.send(post)
     } catch (error) {
-        console.log(error)
-        res.status(403).send(error.errors.title.message)
+        res.status(403).send()
     }
 })
 
