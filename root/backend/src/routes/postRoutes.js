@@ -60,8 +60,8 @@ router.patch('/post/update/:id', async (req, res) => {
 })
 
 
-router.delete('/post', async (req, res) => {
-    const post = await Post.findByIdAndDelete(req.body.id)
+router.delete('/post/:id', async (req, res) => {
+    const post = await Post.findByIdAndDelete(req.params.id)
 
     if(!post) {
         res.status(404).send("Post was not found!")

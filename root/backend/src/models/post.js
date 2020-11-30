@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema({
     },
     postDate: {
         type: Date,
-        default: new Date().toDateString
+        default: new Date()
     },
     body: {
         type: String,
